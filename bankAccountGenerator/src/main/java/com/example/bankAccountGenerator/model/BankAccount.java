@@ -10,4 +10,12 @@ public class BankAccount {
     private String lastName;
     private String patronymic;
     private long accountNumber;
+
+    public BankAccount(UUID uuid, String firstName, String lastName, String patronymic, long accountNumber) {
+        this.uuid = uuid;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.accountNumber = accountNumber;
+    }
 }

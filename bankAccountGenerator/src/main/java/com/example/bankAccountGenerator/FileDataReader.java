@@ -1,5 +1,6 @@
 package com.example.bankAccountGenerator;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Data
 public class FileDataReader {
 
     private final List<String> mansNames;
