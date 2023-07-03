@@ -1,6 +1,7 @@
-package com.example.bankAccountGenerator;
+package com.example.bankAccountGenerator.controller;
 
 import com.example.bankAccountGenerator.model.BankAccount;
+import com.example.bankAccountGenerator.service.BankAccountGeneratorService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

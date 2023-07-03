@@ -1,6 +1,7 @@
-package com.example.bankAccountGenerator;
+package com.example.bankAccountGenerator.service;
 
 
+import com.example.bankAccountGenerator.FileDataReader;
 import com.example.bankAccountGenerator.model.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
