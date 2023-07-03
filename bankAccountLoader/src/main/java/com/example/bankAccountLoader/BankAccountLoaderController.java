@@ -1,7 +1,6 @@
 package com.example.bankAccountLoader;
 
-import com.example.bankAccountLoader.model.BankAccount;
-import com.example.bankAccountLoader.model.TechResponse;
+import com.example.bankAccountLoader.model.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -2,24 +2,28 @@ package com.example.bankAccountGenerator;
 
 import com.example.bankAccountGenerator.model.BankAccount;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/bankAccountGenerator")
 @AllArgsConstructor
 public class BankAccountGeneratorController {
+
     @Autowired
+    KafkaTemplate<Long,BankAccount> kafkaTemplate;
+
+    private static final String TOPIC = "bank-account-topic";
+
     private final BankAccountGeneratorService service;
 
-    private final BankAccountGeneratorKafkaService producer;
     @GetMapping("/")
     public BankAccount getRandomGeneratedAccount(){
 
         BankAccount res = service.generateRandomAccount();
-        producer.sendBankAccount(res);
+
+        kafkaTemplate.send(TOPIC, res);
         return res;
     }
 
