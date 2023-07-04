@@ -1,4 +1,4 @@
-package com.example.bankAccountLoader;
+package com.example.bankAccountLoader.repository;
 
 import com.example.bankAccountLoader.model.BankAccount;
 import org.springframework.data.jpa.repository.JpaRepository;

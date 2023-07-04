@@ -1,7 +1,8 @@
-package com.example.bankAccountLoader;
+package com.example.bankAccountLoader.service;
 
 
 import com.example.bankAccountLoader.model.*;
+import com.example.bankAccountLoader.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

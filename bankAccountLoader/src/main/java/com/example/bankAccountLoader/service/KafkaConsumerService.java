@@ -1,4 +1,4 @@
-package com.example.bankAccountLoader;
+package com.example.bankAccountLoader.service;
 
 
 import com.example.bankAccountLoader.model.BankAccount;

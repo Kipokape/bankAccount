@@ -1,6 +1,8 @@
-package com.example.bankAccountLoader;
+package com.example.bankAccountLoader.controller;
 
 import com.example.bankAccountLoader.model.*;
+import com.example.bankAccountLoader.service.BankAccountLoaderService;
+import com.example.bankAccountLoader.service.KafkaConsumerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
