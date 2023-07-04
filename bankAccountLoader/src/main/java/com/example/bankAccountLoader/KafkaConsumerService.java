@@ -8,6 +8,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 
 @Service
@@ -17,20 +19,21 @@ public class KafkaConsumerService {
 
     private static final String groupId = "bankAccountLoader";
 
-    private BankAccount latestBankAccount;
-
+    private CompletableFuture<BankAccount> latestBankAccountFuture = new CompletableFuture<>();
 
     @KafkaListener(topics = TOPIC, groupId = groupId)
-    public void consume(ConsumerRecord<String,String> record) throws JsonProcessingException {
+    private void consume(ConsumerRecord<String,String> record) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        latestBankAccount = objectMapper.readValue(record.value(), BankAccount.class);
-
+        setLatestBankAccount(objectMapper.readValue(record.value(), BankAccount.class));
         System.out.println("Received message: " + record.value());
-
-
     }
 
-    public BankAccount getLatestBankAccount() {
-        return latestBankAccount;
+    public synchronized void setLatestBankAccount(BankAccount bankAccount) {
+        latestBankAccountFuture.complete(bankAccount);
+        latestBankAccountFuture = new CompletableFuture<>();
+    }
+
+    public BankAccount getLatestBankAccount() throws ExecutionException, InterruptedException {
+        return latestBankAccountFuture.get();
     }
 }

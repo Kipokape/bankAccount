@@ -2,7 +2,6 @@ package com.example.bankAccountLoader.config;
 
 
 import com.example.bankAccountLoader.model.BankAccount;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +37,6 @@ public class KafkaConsumerConfig {
 
         return new DefaultKafkaConsumerFactory<>(config);
     }
-
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<Long, BankAccount> concurrentKafkaListenerContainerFactory(){

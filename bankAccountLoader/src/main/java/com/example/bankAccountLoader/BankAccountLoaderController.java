@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+
 @RestController
 @RequestMapping("/bankAccountLoader")
 @AllArgsConstructor
 public class BankAccountLoaderController {
 
     private RestTemplate restTemplate;
+
+    @Autowired
+    private KafkaConsumerService consumer;
 
     @Autowired
     private BankAccountLoaderService service;
@@ -28,7 +32,7 @@ public class BankAccountLoaderController {
         try {
             String url = "http://localhost:8080/bankAccountGenerator/";
             ResponseEntity<BankAccount> response = restTemplate.getForEntity(url, BankAccount.class);
-            return service.saveAccount(response.getBody());
+            return service.saveAccount(consumer.getLatestBankAccount());
         }catch (Exception ex){
             return new TechResponse("ERROR","Ошибка получения данных от сервиса генерации аккаунтов");
         }

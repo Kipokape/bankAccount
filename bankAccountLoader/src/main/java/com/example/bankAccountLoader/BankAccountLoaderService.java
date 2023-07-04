@@ -14,6 +14,8 @@ public class BankAccountLoaderService {
 
     public TechResponse saveAccount(BankAccount account){
 
+        if(account==null) return new TechResponse("ERROR","Ошибка получения данных из Kafka");
+
         if(findAccount(account)){
             return new TechResponse("ERROR","Аккаунт уже зарегистрирован в БД");
         }else {
